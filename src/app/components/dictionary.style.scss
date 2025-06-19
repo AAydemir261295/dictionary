@@ -1,17 +1,43 @@
 .dictionary-container {}
 
 
-@media screen and (min-width: 900px) {
-    .dictionary-container {}
 
-}
+
+
+
+@media screen and (min-width: 296px) and (max-width: 500px) {}
 
 @media screen and (min-width: 500px) and (max-width: 900px) {
     .dictionary-container {}
 
 }
 
-@media screen and (min-width: 296px) and (max-width: 500px) {
-    .dictionary-container {}
+@media screen and (min-width: 900px) {
+    .dictionary-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 900px;
+        height: 500px;
+        border: 1px solid black;
 
+        &__input-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 50%;
+            height: 100%;
+        }
+
+        &__input-menu {
+            border: 1px solid brown;
+        }
+
+        &__text-input {
+            width: 450px;
+            height: 300px;
+            border: 3px solid indianred;
+        }
+
+    }
 }
