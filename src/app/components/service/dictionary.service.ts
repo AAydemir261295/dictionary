@@ -12,14 +12,14 @@ const ignoreLangCodes = ["mjr", "emj"]
 Injectable({ providedIn: "root" })
 export class DictionaryService {
     constructor(private http: HttpClient) {
-        let languages = localStorage.getItem("langs");
-        if (!languages) {
-            this.http.get(getLangs(key)).pipe(catchError(this.handleError)).subscribe((response: any) => {
-                this.prepareLanguages(response);
-            })
-        } else {
-            this.languages = JSON.parse(localStorage.getItem("langs") as any);
-        }
+        // let languages = localStorage.getItem("langs");
+        // if (!languages) {
+        //     this.http.get(getLangs(key)).pipe(catchError(this.handleError)).subscribe((response: any) => {
+        //         this.prepareLanguages(response);
+        //     })
+        // } else {
+        //     this.languages = JSON.parse(localStorage.getItem("langs") as any);
+        // }
     }
 
     languages: Language[] = [];
