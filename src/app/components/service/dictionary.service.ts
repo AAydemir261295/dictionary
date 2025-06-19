@@ -12,14 +12,14 @@ const ignoreLangCodes = ["mjr", "emj"]
 Injectable({ providedIn: "root" })
 export class DictionaryService {
     constructor(private http: HttpClient, private apiKey: string) {
-        // let languages = localStorage.getItem("langs");
-        // if (!languages) {
-        //     this.http.get(getLangs(this.apiKey)).pipe(catchError(this.handleError)).subscribe((response: any) => {
-        //         this.prepareLanguages(response);
-        //     })
-        // } else {
-        //     this.languages = JSON.parse(localStorage.getItem("langs") as any);
-        // }
+        let languages = localStorage.getItem("langs");
+        if (!languages) {
+        this.http.get(getLangs(this.apiKey)).pipe(catchError(this.handleError)).subscribe((response: any) => {
+            this.prepareLanguages(response);
+        })
+        } else {
+            this.languages = JSON.parse(localStorage.getItem("langs") as any);
+        }
     }
 
     languages: Language[] = [];
@@ -43,25 +43,29 @@ export class DictionaryService {
     prepareLanguages(langs: string[]) {
         for (let q = 0; q < langs.length; q++) {
             const languages = langs[q];
-            var tmp: Language = {};
-            var tmp1: Language = {};
+            var tmp: Language = { code: "", fullName: "" };
+            var tmp1: Language = { code: "", fullName: "" };
             var splitted = languages.split("-");
             var from = splitted[0];
             var to = splitted[1];
-            if (this.languages.find((v) => v[from]) == undefined) {
+            if (this.languages.find((v) => v.code == from) == undefined) {
                 if (ignoreLangCodes.indexOf(from) == -1) {
-                    tmp[from] = this.parseToFullName(from) as string;
+                    tmp.code = from;
+                    tmp.fullName = this.parseToFullName(from) as string;
                     this.languages.push(tmp);
+                    continue;
                 }
-
-            }
-            if (this.languages.find((v) => v[to]) == undefined) {
+            } else if (this.languages.find((v) => v.code == to) == undefined) {
                 if (ignoreLangCodes.indexOf(to) == -1) {
-                    tmp1[to] = this.parseToFullName(to) as string;
+                    tmp1.code = to;
+                    tmp1.fullName = this.parseToFullName(to) as string;
                     this.languages.push(tmp1)
+                    continue;
                 }
             }
+
         }
+        localStorage.setItem("langs", JSON.stringify(this.languages));
     }
 
 
