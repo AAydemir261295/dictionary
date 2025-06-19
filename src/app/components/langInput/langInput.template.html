@@ -1,8 +1,9 @@
 <div class="input-container">
-    <input [formControl]="inputControl" (click)="expand()"  maxlength="20" class="input-container__input nostyle-input" type="text">
+    <input [formControl]="inputControl" (click)="expand()" maxlength="18" class="input-container__input nostyle-input"
+        type="text">
     <ul class="input-container__ddown nostyle-list">
         @for (item of items; track $index) {
-            <li class="input-container__ddown-item" (click)="select(item)">{{item.fullName}}</li>
+        <li class="input-container__ddown-item" (click)="select(item)">{{item.fullName}}</li>
         }
     </ul>
 </div>

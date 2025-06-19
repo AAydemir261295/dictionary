@@ -43,7 +43,8 @@ export class LangInput implements ControlValueAccessor {
     expand() { }
 
     select(value: Language) {
-        this.writeValue(value.fullName)
+        this.writeValue(value.fullName);
+        this.resetItems();
     }
 
     resetItems() {
