@@ -1,3 +1,4 @@
 export interface Language {
-    [languageCode: string]: string
+    code: string,
+    fullName: string
 }
