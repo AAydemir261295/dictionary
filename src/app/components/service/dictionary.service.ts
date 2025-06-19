@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, throwError } from "rxjs";
 import { Language } from "./models/Language";
-import { apiKey } from "./api.key";
+
 
 const getLangs = (key: string) => `https://dictionary.yandex.net/api/v1/dicservice.json/getLangs?key=${key}`
 const lookUp = (key: string, text: string, from: string, to: string) => `https://dictionary.yandex.net/api/v1/dicservice.json/lookup?key=${key}&lang=${from}-${to}&text=${text}`
@@ -11,10 +11,10 @@ const ignoreLangCodes = ["mjr", "emj"]
 
 Injectable({ providedIn: "root" })
 export class DictionaryService {
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private apiKey: string) {
         // let languages = localStorage.getItem("langs");
         // if (!languages) {
-        //     this.http.get(getLangs(apiKey)).pipe(catchError(this.handleError)).subscribe((response: any) => {
+        //     this.http.get(getLangs(this.apiKey)).pipe(catchError(this.handleError)).subscribe((response: any) => {
         //         this.prepareLanguages(response);
         //     })
         // } else {
@@ -30,7 +30,7 @@ export class DictionaryService {
 
 
     translate(text: string, from: string, to: string) {
-        return this.http.get(lookUp(apiKey, text, from, to)).pipe(catchError(this.handleError))
+        return this.http.get(lookUp(this.apiKey, text, from, to)).pipe(catchError(this.handleError))
     }
 
 
