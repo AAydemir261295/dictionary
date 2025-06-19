@@ -1,14 +1,20 @@
 <div class="dictionary-container">
 
+    <form [formGroup]="form" class="dictionary-container__form nostyle-form" (ngSubmit)="formAction()">
+        <div class="dictionary-container__form-content">
+            <div class="dictionary-container__input-container">
+                <lang-input formControlName="langInput" class="dictionary-container__lang-input" />
+                <textarea formControlName="text" class="dictionary-container__text-input nostyle-textarea"></textarea>
+            </div>
 
+            <div class="dictionary-container__output-container">
+                <lang-input formControlName="langOutput" class="dictionary-container__lang-output" />
+                <ul class="dictionary-container__translate-result nostyle-list">
 
-    <div class="dictionary-container__input-container">
-        <form class="dictionary-container__input-form nostyle-form" action="">
-            <!-- <input class="dictionary-container__lang-input nostyle-input" type="text"> -->
-             <lang-input/>
-            <textarea class="dictionary-container__text-input nostyle-textarea" name="" id=""></textarea>
-        </form>
-    </div>
-
+                </ul>
+            </div>
+        </div>
+        <button #btn class="dictionary-container__form-btn nostyle-btn" type="submit" (click)="disableFocus(btn)">перевести</button>
+    </form>
 
 </div>
