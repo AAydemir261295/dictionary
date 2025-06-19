@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'RBC Grotesk';
+    src: url('../../assets/fonts/RBCGrotesk-Regular.eot');
+    src: local('RBCGrotesk-Regular'),
+        url('../../assets/fonts/RBCGrotesk-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../../assets/fonts/RBCGrotesk-Regular.woff') format('woff'),
+        url('../../assets/fonts/RBCGrotesk-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'RBC Grotesk light';
+    src: url('../../assets/fonts/RBCGrotesk-Light.eot');
+    src: local('RBCGrotesk-Light'),
+        url('../../assets/fonts/RBCGrotesk-Light.eot?#iefix') format('embedded-opentype'),
+        url('../../assets/fonts/RBCGrotesk-Light.woff') format('woff'),
+        url('../../assets/fonts/RBCGrotesk-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
