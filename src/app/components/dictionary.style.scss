@@ -21,7 +21,7 @@
         height: 500px;
         border: 1px solid black;
 
-        &__input-container {
+        &__input-form {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -29,8 +29,8 @@
             height: 100%;
         }
 
-        &__input-menu {
-            border: 1px solid brown;
+        &__lang-input {
+            background-color: red;
         }
 
         &__text-input {
