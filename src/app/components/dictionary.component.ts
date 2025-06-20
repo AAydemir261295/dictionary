@@ -32,18 +32,9 @@ export class DictionaryComponent implements OnInit {
     formAction() {
     }
 
-    timeOut: any = null;
-    disableFocus(btn: HTMLButtonElement) {
-        if (this.timeOut == null) {
-            this.timeOut = setTimeout(() => {
-                btn.blur();
-                this.timeOut = null;
-            }, 300);
-        }
-    }
+  
 
     ngOnInit(): void {
     }
-
 
 }
