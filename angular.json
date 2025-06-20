@@ -31,11 +31,6 @@
                 "input": "public"
               }
             ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/app/styles/variables"
-              ]
-            },
             "styles": [
               "src/styles.scss"
             ],
