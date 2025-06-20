@@ -14,13 +14,11 @@
     &__form-btn {
         font-family: c.$fontBold;
         height: 40px;
-        background-color: c.$red;
-
-
+        background-color: c.$green;
         color: c.$white;
         border-radius: 15px;
         width: 220px;
-        border: 3px solid c.$red;
+        border: 3px solid c.$green;
         transition: 0.3s;
     }
 
@@ -30,24 +28,24 @@
     }
 
     &__form-btn:focus {
-        animation: btnAnime 0.3s linear;
+        animation: btnAnime 0.35s linear;
         animation-fill-mode: forwards;
     }
-
-
 }
+
+
 
 
 @keyframes btnAnime {
     from {
-        background-image: radial-gradient(c.$red 70%, c.$white 30%);
+        background-image: radial-gradient(c.$green 70%, c.$white 30%);
         background-size: 0px 0px;
         background-repeat: no-repeat;
         background-position: 50%;
     }
 
     to {
-        background-image: radial-gradient(c.$red 70%, c.$white 30%);
+        background-image: radial-gradient(c.$green 70%, c.$white 30%);
         background-repeat: no-repeat;
         background-size: 500px 500px;
         background-position: 50%;
