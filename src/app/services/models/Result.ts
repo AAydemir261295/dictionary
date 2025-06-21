@@ -2,21 +2,21 @@ export interface Mean {
     text: string;
 }
 
-export interface Translate {
+export interface TranslateRows {
     text: string
     pos: string // cуществи прилага
     gen: string // пол
     mean: Mean[]
 }
 
-export interface Result {
+export interface Translate {
     text: string
     pos?: string
     ts?: string
     tr: Translate[]
 }
 
-export interface Response {
+export interface Result {
     head: {},
     def: []
 }
