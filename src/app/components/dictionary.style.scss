@@ -3,6 +3,58 @@
 
 .dictionary-container {
     border: 1px solid black;
+    position: relative;
+
+
+    &__error {
+        visibility: hidden;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        top: 0px;
+        left: 40%;
+        width: fit-content;
+        height: 40px;
+        // padding: 0px 10px;
+        z-index: 9;
+        opacity: 0;
+    }
+
+    &__error--open {
+        visibility: visible;
+        opacity: 1;
+        transition: all 0.2s linear;
+    }
+
+    &__error--close {
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.2s linear;
+    }
+
+    &__error::before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        border: 3px solid c.$red;
+        background-color: c.$red;
+        border-radius: 15px;
+        padding: 0px 10px;
+        z-index: 4;
+    }
+
+
+
+    &__error-text {
+        font-family: c.$fontBold;
+        font-size: 20px;
+        color: c.$white;
+        z-index: 5;
+    }
+
 
 
     &__text-input {
@@ -31,6 +83,9 @@
         animation: btnAnime 0.35s linear;
         animation-fill-mode: forwards;
     }
+
+
+
 }
 
 
@@ -115,15 +170,15 @@
             margin-right: 20px;
         }
 
-        &__translate-result {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            width: 100%;
-            min-height: 260px;
-            border: 1px solid blue;
-            padding: 20px 20px
-        }
+        // &__translate-result {
+        //     display: flex;
+        //     flex-direction: column;
+        //     justify-content: space-around;
+        //     width: 100%;
+        //     min-height: 260px;
+        //     border: 1px solid blue;
+        //     padding: 20px 20px
+        // }
 
         &__form-btn {
             margin-top: 20px;

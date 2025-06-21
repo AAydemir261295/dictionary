@@ -1,16 +1,18 @@
 <div class="dictionary-container">
-
-    <form [formGroup]="form" class="dictionary-container__form nostyle-form" (ngSubmit)="formAction()">
+    <div #errorContainer (transitionend)="onCloseAnimationEnd()" class="dictionary-container__error"
+        [class.dictionary-container__error--open]="isError" [class.dictionary-container__error--close]="!isError">
+        <span class="dictionary-container__error-text">{{errorText}}</span>
+    </div>
+    <form [formGroup]="form" class="dictionary-container__form nostyle-form" (ngSubmit)="onSubmit()">
         <div class="dictionary-container__form-content">
             <div class="dictionary-container__input-container">
-                <lang-input formControlName="langInput" class="dictionary-container__lang-input" />
+                <lang-input #input formControlName="langInput" class="dictionary-container__lang-input" />
                 <textarea formControlName="text" class="dictionary-container__text-input nostyle-textarea"></textarea>
             </div>
 
             <div class="dictionary-container__output-container">
-                <lang-input formControlName="langOutput" class="dictionary-container__lang-output" />
-                <ul class="dictionary-container__translate-result nostyle-list">
-                </ul>
+                <lang-input #output formControlName="langOutput" class="dictionary-container__lang-output" />
+                <translate-result class="dictionary-container__translate-result " />
             </div>
         </div>
         <button #btn class="dictionary-container__form-btn nostyle-btn" type="submit">перевести</button>
