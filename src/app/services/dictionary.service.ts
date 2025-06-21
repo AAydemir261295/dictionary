@@ -1,7 +1,10 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { catchError, Observable, throwError } from "rxjs";
+import { Inject, inject, Injectable } from "@angular/core";
+import { catchError, Observable, Subject, Subscribable, Subscription, throwError } from "rxjs";
 import { Language } from "./models/Language";
+import { Result } from "./models/Result";
+import { MyLocalStorage } from "./localStorage.service";
+import { API_KEY } from "./apiKey.provider";
 
 
 const getLangs = (key: string) => `https://dictionary.yandex.net/api/v1/dicservice.json/getLangs?key=${key}`
@@ -11,7 +14,8 @@ const ignoreLangCodes = ["mjr", "emj"]
 
 Injectable({ providedIn: "root" })
 export class DictionaryService {
-    constructor(private http: HttpClient, private apiKey: string) {
+    constructor(private http: HttpClient, private myStorage: MyLocalStorage) {
+        this.apiKey = inject(API_KEY);
         let languages = localStorage.getItem("langs");
         if (!languages) {
             this.http.get(getLangs(this.apiKey)).pipe(catchError(this.handleError)).subscribe((response: any) => {
@@ -20,25 +24,35 @@ export class DictionaryService {
         } else {
             this.languages = JSON.parse(localStorage.getItem("langs") as any);
         }
+
     }
+
+    apiKey: string | undefined;
 
     languages: Language[] = [];
 
-    translateResult: Observable<Response> | undefined;
+    translateResult: Subject<Result | undefined> = new Subject();
+
+    getTranslateResult(): Subject<Result | undefined> {
+        return this.translateResult;
+    }
 
     getLanguages() {
         return this.languages;
     }
 
-    getLanguageCode(language: string) {
+    getLanguageCode(language: string): any {
         return this.languages.find((v) => v.fullName == language)?.code;
     }
 
-    translate(text: string, from: string, to: string) {
-        this.translateResult = this.http.get<Response>(lookUp(this.apiKey, text, from, to)).pipe(catchError(this.handleError));
-        this.translateResult.subscribe((r) => {
-            console.log(r);
-        });
+    translate(values: { text: string, langInput: string, langOutput: string }) {
+        console.log(values);
+        let from = this.getLanguageCode(values.langInput);
+        let to = this.getLanguageCode(values.langOutput);
+        this.http.get<Result>(lookUp(this.apiKey!, values.text, from, to))
+            .pipe(catchError(this.handleError)).subscribe((r) => {
+                this.translateResult.next(r);
+            });
     }
 
     parseToFullName(code: string) {
