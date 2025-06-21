@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, throwError } from "rxjs";
+import { catchError, Observable, throwError } from "rxjs";
 import { Language } from "./models/Language";
 
 
@@ -14,9 +14,9 @@ export class DictionaryService {
     constructor(private http: HttpClient, private apiKey: string) {
         let languages = localStorage.getItem("langs");
         if (!languages) {
-        this.http.get(getLangs(this.apiKey)).pipe(catchError(this.handleError)).subscribe((response: any) => {
-            this.prepareLanguages(response);
-        })
+            this.http.get(getLangs(this.apiKey)).pipe(catchError(this.handleError)).subscribe((response: any) => {
+                this.prepareLanguages(response);
+            })
         } else {
             this.languages = JSON.parse(localStorage.getItem("langs") as any);
         }
@@ -24,15 +24,22 @@ export class DictionaryService {
 
     languages: Language[] = [];
 
+    translateResult: Observable<Response> | undefined;
+
     getLanguages() {
         return this.languages;
     }
 
-
-    translate(text: string, from: string, to: string) {
-        return this.http.get(lookUp(this.apiKey, text, from, to)).pipe(catchError(this.handleError))
+    getLanguageCode(language: string) {
+        return this.languages.find((v) => v.fullName == language)?.code;
     }
 
+    translate(text: string, from: string, to: string) {
+        this.translateResult = this.http.get<Response>(lookUp(this.apiKey, text, from, to)).pipe(catchError(this.handleError));
+        this.translateResult.subscribe((r) => {
+            console.log(r);
+        });
+    }
 
     parseToFullName(code: string) {
         const lang = new Intl.DisplayNames(['ru'], { type: 'language' });
