@@ -2,7 +2,7 @@
     <input [formControl]="inputControl" (click)="show()" maxlength="18" class="input-container__input nostyle-input"
         type="text">
     <ul #ddown class="input-container__ddown nostyle-list" [class.input-container__ddown--open]="showDdown"
-        [class.input-container__ddown--close]="showDdown == false">
+        [class.input-container__ddown--close]="!showDdown">
         @for (item of items; track $index) {
         <li class="input-container__ddown-item" (click)="select(item)">{{item.fullName}}</li>
         }

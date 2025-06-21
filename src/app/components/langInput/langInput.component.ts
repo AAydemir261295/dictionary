@@ -1,11 +1,8 @@
-import { Component, ElementRef, HostListener, Inject, input, Input, ViewChild } from "@angular/core";
+import { Component, HostListener } from "@angular/core";
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { Subscription } from "rxjs";
-import { Language } from "../service/models/Language";
-import { DictionaryService } from "../service/dictionary.service";
-import { DOCUMENT } from "@angular/common";
-
-
+import { Language } from "../../services/models/Language";
+import { DictionaryService } from "../../services/dictionary.service";
 
 @Component({
     selector: 'lang-input',
@@ -15,32 +12,45 @@ import { DOCUMENT } from "@angular/common";
             provide: NG_VALUE_ACCESSOR,
             multi: true,
             useExisting: LangInput
-        },
+        }
     ],
     templateUrl: './langInput.template.html',
     styleUrl: './langInput.style.scss'
 })
 export class LangInput implements ControlValueAccessor {
-    title = 'dictionary';
 
     constructor(private service: DictionaryService) {
         this.items = this.service.getLanguages();
-        this.sub = this.inputControl.valueChanges.subscribe((val) => {
+        this.sub = this.inputControl.valueChanges.subscribe((val: string) => {
             this.onChange(val);
-            if (val == "") {
+            let value: string = val.toLowerCase();
+            if (value == "") {
                 this.resetItems();
             } else {
                 this.showDdown = true;
-                this.items = this.items.filter((v) => v.fullName.match(new RegExp(val)));
+                this.items = this.items.filter((v) => v.fullName.match(new RegExp(value)));
             }
         });
     }
 
-    showDdown: boolean = false;
+    isError: boolean = false;
+    textError: string = "";
+
+
+    showDdown: boolean | undefined;
     items: Language[] = [];
     inputControl: FormControl = new FormControl();
     sub: Subscription;
 
+    showError(err: string) {
+        this.isError = true;
+        this.textError = err;
+        console.log(err);
+    }
+
+    hideError() {
+        this.isError = false;
+    }
 
     show() {
         this.showDdown = true;
