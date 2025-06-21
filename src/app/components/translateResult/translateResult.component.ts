@@ -1,14 +1,23 @@
 import { Component } from "@angular/core";
+import { DictionaryService } from "../../services/dictionary.service";
+import { Result } from "../../services/models/Result";
+import { Observable, } from "rxjs";
+import { AsyncPipe } from "@angular/common";
 
 @Component({
     selector: 'translate-result',
-    imports: [],
+    imports: [AsyncPipe],
     providers: [],
     templateUrl: './translateResult.template.html',
     styleUrl: './translateResult.style.scss',
     standalone: true,
 })
 export class TranslateResultComponent {
-    constructor() { }
+    constructor(private service: DictionaryService) {
+        this.service.getTranslateResult().subscribe(r => {
+            this.translateResult = r
+        })
+    }
 
+    translateResult: Result | undefined;
 }
