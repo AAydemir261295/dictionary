@@ -1,6 +1,6 @@
 <div class="input-container">
     <input class="input-container__input nostyle-input" [formControl]="inputControl" (click)="show()"
-        (keyup)="onKeyPress($event)" maxlength="18" type="text">
+        (keyup)="onKeyPress($event)" placeholder="Выберите язык" maxlength="18" type="text">
     <ul #ddown class="input-container__ddown nostyle-list" [class.input-container__ddown--open]="showDdown"
         [class.input-container__ddown--close]="!showDdown">
         @for (item of items; track $index) {
