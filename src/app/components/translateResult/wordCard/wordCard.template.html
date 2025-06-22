@@ -1,0 +1,59 @@
+<div class="word-card">
+    <div class="word-card__translate-content">
+        <header class="word-card__header">
+            <p class="word-card__word-translate">{{data?.text}}</p>
+            @if (data?.hasOwnProperty("ts")) {
+            <p class="word-card__word-transcription">[{{data?.ts}}]</p>
+            }
+        </header>
+
+        <!-- mean -->
+        <div class="word-card__word-info">
+            @if(data?.hasOwnProperty("mean")){
+            <span class="word-card__word-mean">{{ data?.mean![0].text }}</span>
+            }
+
+            @if (wordTypes.hasOwnProperty(data?.pos!)) {
+            <span class="word-card__word-type">{{ wordTypes[data?.pos!] }}</span>
+            }
+        </div>
+    </div>
+
+    <!-- @if (data?.syn!.length > 0) {
+    <footer class="word-card__footer">
+        <header class="word-card__footer-header">
+            @if (data?.syn!.length == 1) {
+            <h6 class="word-card__footer-title">синоним</h6>
+            }
+            @else {
+            <h6 class="word-card__footer-title">синонимы</h6>
+            }
+        </header>
+        <ul class="word-card__synonyms-list nostyle-list">
+            @for (item of data?.syn; track $index) {
+            <li class="word-card__synonym-item">
+                <p class="word-card__synonym"> {{item.text}}</p>
+                @if (item.hasOwnProperty("ts")) {}
+                <p class="word-card__word-transcription">{{item.ts}}</p>
+            </li>
+            }
+        </ul>
+    </footer>
+    } -->
+</div>
+
+
+
+
+
+
+
+<!-- @if (wordTypes.hasOwnProperty(data?.syn!)){
+    @for (item of data.syn!; track $index) {
+    <ul class="translate-result__word-synonym">
+        <li class="translate-result__word-synonym-item">
+
+        </li>
+    </ul>
+    }
+    } -->

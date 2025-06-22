@@ -1,0 +1,94 @@
+@use "../../../styles/variables/variables.scss" as c;
+
+.word-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-right: 20px;
+
+    &__translate-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 3px solid c.$green;
+        border-radius: 20px;
+        padding: 15px;
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 250px;
+        line-height: 0px;
+    }
+
+
+    &__word-translate {
+        font-family: c.$fontBold;
+        font-size: 20px;
+    }
+
+    &__word-transcription{
+        font-family: c.$fontBold;
+    }
+
+    &__word-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__word-mean {
+        font-family: c.$fontRegular;
+        font-weight: bold;
+    }
+
+
+    &__word-type {
+        font-family: c.$fontBold;
+    }
+
+    &__footer {
+        border-bottom: 3px solid c.$green;
+        border-left: 3px solid c.$green;
+        border-right: 3px solid c.$green;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        width: 180px;
+        padding: 10px 10px;
+
+    }
+
+    &__footer-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+        font-family: c.$fontBold;
+
+    }
+
+    &__footer-title {
+        // font-family: c.$fontBold;
+        line-height: 0px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+
+    &__synonyms-list {
+        font-family: c.$fontRegular;
+        font-weight: bold;
+    }
+
+    &__synonym-item {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        line-height: 0px;
+    }
+
+}
