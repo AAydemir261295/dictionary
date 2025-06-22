@@ -1,10 +1,14 @@
 <div class="input-container">
-    <input [formControl]="inputControl" (click)="show()" (keyup)="onKeyPress($event)" maxlength="18" class="input-container__input nostyle-input"
+    <input [formControl]="inputControl" 
+    (click)="show()" 
+    
+    (keyup)="onKeyPress($event)"
+     maxlength="18" class="input-container__input nostyle-input"
         type="text">
     <ul #ddown class="input-container__ddown nostyle-list" [class.input-container__ddown--open]="showDdown"
         [class.input-container__ddown--close]="!showDdown">
         @for (item of items; track $index) {
-        <li #item class="input-container__ddown-item" (click)="select(item)">{{item.fullName}}</li>
+        <li #item class="input-container__ddown-item" (mouseover)="onHover($event, $index)" (click)="select(item)">{{item.fullName}}</li>
         }
     </ul>
 </div>

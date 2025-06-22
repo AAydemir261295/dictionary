@@ -87,6 +87,13 @@ export class LangInput implements ControlValueAccessor {
     registerOnTouched(fn: any): void {
     }
 
+    onHover(e: MouseEvent, idx: number) {
+        if (this.lastHoveredItemIdx >= 0) {
+            this.itemsRef.get(this.lastHoveredItemIdx)?.nativeElement.classList.remove("input-container__ddown-item--hoverable")
+            this.lastHoveredItemIdx = idx;
+        }
+    }
+
 
     onKeyPress(e: KeyboardEvent) {
         let up = "ArrowUp";
