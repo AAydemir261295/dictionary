@@ -24,7 +24,6 @@ export class DictionaryService {
         } else {
             this.languages = JSON.parse(localStorage.getItem("langs") as any);
         }
-
     }
 
     apiKey: string | undefined;
@@ -34,6 +33,8 @@ export class DictionaryService {
     translateResult: Subject<Result | undefined> = new Subject();
 
     getTranslateResult(): Subject<Result | undefined> {
+        var b = this.myStorage.getItem("дом", "русский", "английский");
+        this.translateResult.next(b)
         return this.translateResult;
     }
 
@@ -46,13 +47,19 @@ export class DictionaryService {
     }
 
     translate(values: { text: string, langInput: string, langOutput: string }) {
-        console.log(values);
-        let from = this.getLanguageCode(values.langInput);
-        let to = this.getLanguageCode(values.langOutput);
-        this.http.get<Result>(lookUp(this.apiKey!, values.text, from, to))
-            .pipe(catchError(this.handleError)).subscribe((r) => {
-                this.translateResult.next(r);
-            });
+        let isNotStored = this.myStorage.getItem(values.text, values.langInput, values.langOutput);
+        if (isNotStored) {
+            this.translateResult.next(isNotStored);
+        } else {
+            console.log("requested")
+            let from = this.getLanguageCode(values.langInput);
+            let to = this.getLanguageCode(values.langOutput);
+            this.http.get<Result>(lookUp(this.apiKey!, values.text, from, to))
+                .pipe(catchError(this.handleError)).subscribe((r) => {
+                    this.myStorage.setItem(r, values.text, values.langInput, values.langOutput);
+                    this.translateResult.next(r);
+                });
+        }
     }
 
     parseToFullName(code: string) {
