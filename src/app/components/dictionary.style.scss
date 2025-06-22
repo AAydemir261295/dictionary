@@ -32,6 +32,7 @@
     }
 
     &__form-btn {
+        position: absolute;
         font-family: c.$fontBold;
         background-color: c.$green;
         color: c.$white;
@@ -79,6 +80,7 @@
         align-items: center;
         align-items: center;
         width: 380px;
+        min-height: 250px;
         max-height: 500px;
 
         &__error {
@@ -95,16 +97,30 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 450px;
         }
 
-        &__input-container {
+        &__inputs {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            height: 70px;
+            margin-bottom: 10px;
+            margin-left: -5px;
+        }
+
+        &__lang-input{
+            z-index: 4;
+        }   
+
+        &__lang-output{
+            z-index: 3;
+
+        }
+
+        &__texts {
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            width: 200px;
-            height: 95px;
         }
 
         &__text-input {
@@ -115,20 +131,13 @@
             padding: 10px 10px;
         }
 
-        &__output-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 380px;
-            margin-top: 10px;
-            height: auto;
-        }
 
         &__translate-result {
-            margin-top: 20px;
+            margin-top: 48px;
         }
 
         &__form-btn {
+            top: 185px;
             height: 25px;
             width: 120px;
             border-radius: 10px;
@@ -165,20 +174,23 @@
 
 
         &__form {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-        }
-
-        &__input-container {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            width: 200px;
-            height: 110px;
-            grid-area: 1 / 1 / 2 / 2;
         }
 
+        &__inputs {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        &__texts {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
 
         &__text-input {
             height: 40px;
@@ -188,21 +200,12 @@
             padding: 10px 10px;
         }
 
-        &__output-container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            width: 400px;
-            height: 400px;
-            grid-area: 1 / 2 / 3 / 3;
-        }
-
         &__translate-result {
             margin-top: 20px;
         }
 
         &__form-btn {
-            grid-area: 2 / 1 / 4 / 2;
+            top: 135px;
             height: 30px;
             width: 150px;
             border-radius: 10px;
@@ -219,7 +222,6 @@
         flex-direction: column;
         width: 900px;
         height: 600px;
-
 
         &__error {
             position: absolute;
@@ -238,20 +240,23 @@
             border-radius: 15px;
         }
 
-
         &__form {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
-        }
-
-        &__input-container {
             display: flex;
             flex-direction: column;
+        }
+
+        &__inputs {
+            display: flex;
+            flex-direction: row;
             justify-content: space-between;
-            width: 300px;
-            height: 160px;
-            grid-area: 1 / 1 / 2 / 2;
+            margin-bottom: 20px;
+        }
+
+        &__texts {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 20px;
         }
 
         &__text-input {
@@ -262,21 +267,12 @@
             padding: 20px 20px;
         }
 
-        &__output-container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            width: 600px;
-            height: 500px;
-            grid-area: 1 / 2 / 3 / 3;
-        }
-
         &__translate-result {
             margin-top: 20px;
         }
 
         &__form-btn {
-            grid-area: 2 / 1 / 4 / 2;
+            top: 180px;
             height: 40px;
             width: 220px;
             border-radius: 15px;
@@ -312,20 +308,23 @@
 
 
         &__form {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
-        }
-
-        &__input-container {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            width: 390px;
-            height: 160px;
-            grid-area: 1 / 1 / 2 / 2;
         }
 
+        &__inputs {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        &__texts {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
 
         &__text-input {
             height: 50px;
@@ -335,21 +334,13 @@
             padding: 20px 20px;
         }
 
-        &__output-container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            height: 700px;
-            grid-area: 1 / 2 / 3 / 3;
-        }
-
-
         &__translate-result {
             margin-top: 20px;
         }
 
         &__form-btn {
-            grid-area: 2 / 1 / 4 / 2;
+            position: absolute;
+            top: 180px;
             height: 40px;
             width: 220px;
             border-radius: 15px;
