@@ -1,12 +1,12 @@
 import { Component } from "@angular/core";
 import { DictionaryService } from "../../services/dictionary.service";
 import { Result } from "../../services/models/Result";
-import { Observable, } from "rxjs";
-import { AsyncPipe } from "@angular/common";
+import { WordCardComponent } from "./wordCard/wordCard.component";
+
 
 @Component({
     selector: 'translate-result',
-    imports: [AsyncPipe],
+    imports: [WordCardComponent],
     providers: [],
     templateUrl: './translateResult.template.html',
     styleUrl: './translateResult.style.scss',
@@ -16,8 +16,11 @@ export class TranslateResultComponent {
     constructor(private service: DictionaryService) {
         this.service.getTranslateResult().subscribe(r => {
             this.translateResult = r
+            console.log(r);
         })
     }
+
+ 
 
     translateResult: Result | undefined;
 }

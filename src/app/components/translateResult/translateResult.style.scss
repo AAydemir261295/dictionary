@@ -1,0 +1,16 @@
+.translate-result {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: auto;
+    max-height: 600px;
+    width: 745px;
+    overflow: auto;
+}
+
+
+@media screen and (min-width: 296px) and (max-width: 500px) {}
+
+@media screen and (min-width: 500px) and (max-width: 900px) {}
+
+@media screen and (min-width: 1200px) {}
