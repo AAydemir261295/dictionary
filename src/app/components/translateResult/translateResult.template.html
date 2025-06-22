@@ -3,11 +3,9 @@
     @if(translateResult){
     @if (translateResult!.def!.length > 0) {
     @for (item of translateResult!.def![0].tr; track $index) {
-    <!-- @for(row of item.tr; track $index) { -->
     <div class="translate-result__word-card">
         <word-card [data]="item" />
     </div>
-    <!-- } -->
     }
     }
     }

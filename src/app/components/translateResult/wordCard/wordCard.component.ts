@@ -19,15 +19,4 @@ export class WordCardComponent {
 
     @Input()
     data: TranslateRow | undefined;
-
-    // @Input()
-    // isSynonym: boolean | undefined;
-
-
-
-
-
-
-
-
 }

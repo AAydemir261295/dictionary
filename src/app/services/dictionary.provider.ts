@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { DictionaryService } from "./dictionary.service";
 import { MyLocalStorage } from "./localStorage.service";
-import { API_KEY, API_KEY_VALUE } from "./apiKey.provider";
 
 
 const ServiceFactory =

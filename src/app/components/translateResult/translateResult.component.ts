@@ -16,7 +16,6 @@ export class TranslateResultComponent {
     constructor(private service: DictionaryService) {
         this.service.getTranslateResult().subscribe(r => {
             this.translateResult = r
-            console.log(r);
         })
     }
 

@@ -49,7 +49,6 @@ export class LangInput implements ControlValueAccessor {
     showError(err: string) {
         this.isError = true;
         this.textError = err;
-        console.log(err);
     }
 
     hideError() {
@@ -100,7 +99,6 @@ export class LangInput implements ControlValueAccessor {
         let down = "ArrowDown";
         let enter = "Enter";
         let pressedKey = e.key
-        console.log(pressedKey);
         this.itemsRef.get(this.lastHoveredItemIdx)?.nativeElement.classList.remove("input-container__ddown-item--hoverable");
         if (pressedKey == up) {
             if (this.lastHoveredItemIdx > 0) {

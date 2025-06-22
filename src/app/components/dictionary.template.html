@@ -5,15 +5,15 @@
     </div>
     <form [formGroup]="form" class="dictionary-container__form nostyle-form" (ngSubmit)="onSubmit()">
         <!-- <div class="dictionary-container__form-content"> -->
-            <div class="dictionary-container__input-container">
-                <lang-input #input formControlName="langInput" class="dictionary-container__lang-input" />
-                <textarea formControlName="text" class="dictionary-container__text-input nostyle-textarea"></textarea>
-            </div>
+        <div class="dictionary-container__input-container">
+            <lang-input #input formControlName="langInput" class="dictionary-container__lang-input" />
+            <textarea formControlName="text" class="dictionary-container__text-input nostyle-textarea"></textarea>
+        </div>
 
-            <div class="dictionary-container__output-container">
-                <lang-input #output formControlName="langOutput" class="dictionary-container__lang-output" />
-                <translate-result class="dictionary-container__translate-result " />
-            </div>
+        <div class="dictionary-container__output-container">
+            <lang-input #output formControlName="langOutput" class="dictionary-container__lang-output" />
+            <translate-result class="dictionary-container__translate-result " />
+        </div>
         <!-- </div> -->
         <button #btn class="dictionary-container__form-btn nostyle-btn" type="submit">перевести</button>
     </form>

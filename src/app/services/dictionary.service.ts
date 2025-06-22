@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Inject, inject, Injectable } from "@angular/core";
-import { catchError, Observable, Subject, Subscribable, Subscription, throwError } from "rxjs";
+import { inject, Injectable } from "@angular/core";
+import { catchError, Subject, throwError } from "rxjs";
 import { Language } from "./models/Language";
 import { Result } from "./models/Result";
 import { MyLocalStorage } from "./localStorage.service";
@@ -33,8 +33,6 @@ export class DictionaryService {
     translateResult: Subject<Result | undefined> = new Subject();
 
     getTranslateResult(): Subject<Result | undefined> {
-        var b = this.myStorage.getItem("дом", "русский", "английский");
-        this.translateResult.next(b)
         return this.translateResult;
     }
 
@@ -47,11 +45,10 @@ export class DictionaryService {
     }
 
     translate(values: { text: string, langInput: string, langOutput: string }) {
-        let isNotStored = this.myStorage.getItem(values.text, values.langInput, values.langOutput);
-        if (isNotStored) {
-            this.translateResult.next(isNotStored);
+        let isCached = this.myStorage.getItem(values.text, values.langInput, values.langOutput);
+        if (isCached) {
+            this.translateResult.next(isCached);
         } else {
-            console.log("requested")
             let from = this.getLanguageCode(values.langInput);
             let to = this.getLanguageCode(values.langOutput);
             this.http.get<Result>(lookUp(this.apiKey!, values.text, from, to))
@@ -100,15 +97,11 @@ export class DictionaryService {
 
     private handleError(error: HttpErrorResponse) {
         if (error.status === 0) {
-            // A client-side or network error occurred. Handle it accordingly.
             console.error('An error occurred:', error.error);
         } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong.
             console.error(
                 `Backend returned code ${error.status}, body was: `, error.error);
         }
-        // Return an observable with a user-facing error message.
         return throwError(() => new Error('Something bad happened; please try again later.'));
     }
 }

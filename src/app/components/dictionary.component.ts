@@ -79,10 +79,11 @@ export class DictionaryComponent {
                 let errorNames: string[] = Object.keys(errors as {})
                 this.errorText = inputErrors[errorNames[0]];
                 this.isError = true;
-
             }
         })
     }
+
+ 
 
     onSubmit() {
         this.showErrors();
