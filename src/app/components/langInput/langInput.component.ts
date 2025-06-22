@@ -1,4 +1,4 @@
-import { Component, HostListener } from "@angular/core";
+import { Component, ElementRef, HostListener, QueryList, ViewChildren } from "@angular/core";
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
 import { Subscription } from "rxjs";
 import { Language } from "../../services/models/Language";
@@ -32,6 +32,10 @@ export class LangInput implements ControlValueAccessor {
             }
         });
     }
+
+    @ViewChildren("item")
+    itemsRef!: QueryList<ElementRef<HTMLLIElement>>;
+    lastHoveredItemIdx: number = -1;
 
     isError: boolean = false;
     textError: string = "";
@@ -83,6 +87,39 @@ export class LangInput implements ControlValueAccessor {
     registerOnTouched(fn: any): void {
     }
 
+
+    onKeyPress(e: KeyboardEvent) {
+        let up = "ArrowUp";
+        let down = "ArrowDown";
+        let enter = "Enter";
+        let pressedKey = e.key
+        console.log(pressedKey);
+        this.itemsRef.get(this.lastHoveredItemIdx)?.nativeElement.classList.remove("input-container__ddown-item--hoverable");
+        if (pressedKey == up) {
+            if (this.lastHoveredItemIdx > 0) {
+                this.lastHoveredItemIdx--;
+                let item = this.itemsRef.get(this.lastHoveredItemIdx);
+                item?.nativeElement.classList.add("input-container__ddown-item--hoverable");
+                item?.nativeElement.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                    inline: "end"
+                });
+            }
+        } else if (pressedKey == down) {
+            this.lastHoveredItemIdx == -1 ? this.lastHoveredItemIdx = 0 : this.lastHoveredItemIdx++;
+            let item = this.itemsRef.get(this.lastHoveredItemIdx);
+            item?.nativeElement.classList.add("input-container__ddown-item--hoverable");
+            item?.nativeElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+                inline: "end"
+            });
+        } else if (pressedKey == enter) {
+            this.select(this.items[this.lastHoveredItemIdx]);
+        }
+
+    }
 
     @HostListener("focusout", ['$event.target'])
     focusOut(e: any) {

@@ -64,10 +64,15 @@
         border-radius: 10px;
     }
 
-    &__ddown-item:hover {
+    &__ddown-item--hoverable {
         background-color: c.$red;
         color: c.$white;
     }
+
+    // &__ddown-item:hover {
+    //     background-color: c.$red;
+    //     color: c.$white;
+    // }
 
 }
 
